@@ -50,7 +50,7 @@ function Homepage() {
        const data = req.data
        const formatData = data.map(data => ({
          ...data,
-         image: Images.map(image => image) //Bad Practice, but it will work. I'm improvising because image is not part of API.
+         image: Images //Bad Practice, but it will work. I'm improvising because image is not part of API.
        }))
 
       
