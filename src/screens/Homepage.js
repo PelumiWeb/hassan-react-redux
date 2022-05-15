@@ -15,10 +15,12 @@ function Homepage() {
   const [loading, setLoading] = useState(false)
   const [reqFailed, setReqFailed] = useState(false)
   const products = useSelector((state) => state.products)
-  const {getData, getCategories, FilterData } = bindActionCreators(actionCreator, dispatch)
+  const [inputValue, setInputValue] = useState("")
 
- 
 
+
+
+  const {getData, getCategories, FilterData, SearchData } = bindActionCreators(actionCreator, dispatch)
 
 
   useEffect(() => {
@@ -40,6 +42,10 @@ function Homepage() {
     }
     FetchOptions()
   }, [])
+
+
+
+
 
 
   useEffect(() => {
@@ -68,6 +74,19 @@ function Homepage() {
  const handleChange  = (selectedOption) => {
   FilterData({selected:selectedOption.label, products: intialProduct})
 }
+
+
+useEffect(() => {
+  const FetchSearchData = () => {
+    SearchData({products: intialProduct, searchInput: inputValue})
+  }
+  console.log(inputValue)
+  FetchSearchData()
+}, [inputValue])
+
+// console.log(products)
+
+
 
  const Cards = () => (
   <CardWrapper> 
@@ -107,7 +126,9 @@ function Homepage() {
 
   return (
     <AppWrapper>
-      <Header handleChange={handleChange} />
+      <Header 
+      inputValue={inputValue}  setInputValue={setInputValue}
+      handleChange={handleChange} />
       {showContents()}
     </AppWrapper>
   );
@@ -130,5 +151,5 @@ flex-wrap: wrap;
 const LoaderWrapper = styled.div`
 display: grid;
 place-items: center;
-height: 100vh
+/* height: 100vh */
 `

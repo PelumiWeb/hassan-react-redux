@@ -10,6 +10,8 @@ switch (action.type) {
         } else {
             return state
         }
+        case "searchdata" : 
+        return action.payload.products.filter(product => product.name.toLowerCase().includes(`${action.payload.searchInput.toLowerCase()}`))
     default: 
     return state
 }

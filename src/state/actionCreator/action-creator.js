@@ -17,6 +17,15 @@ export const getCategories = (data) => {
     }
 }
 
+export const SearchData = (data) => {
+    return (dispatch) => {
+        dispatch({
+            type: "searchdata",
+            payload: data
+        })
+    }
+}
+
 export const FilterData = (data) => {
     return (dispatch) => {
         dispatch({

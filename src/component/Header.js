@@ -2,12 +2,12 @@ import styled from 'styled-components'
 import Select from 'react-select';
 import { useSelector } from 'react-redux';
 
-function Header({handleChange}) {
+function Header({handleChange, inputValue, setInputValue}) {
   const categories = useSelector((state) => state.category)
     return (
-        <HeaderComponent>
-            <Select  options={categories} onChange={handleChange} />
-        </HeaderComponent>
+      <div> 
+           <input style={{zIndex: 10000}} placeholder="Search products" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+      </div>
     )
 }
 
